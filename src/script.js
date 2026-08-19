@@ -26,7 +26,8 @@ const translations = {
         sysArch: "RECENT INTERESTS", secTitle: "Intent-Based Search Ranking", patTitle: "Full-Stack System Architecture",
         connect: "CONNECT", conNet: "LinkedIn", conSrc: "GitHub",
         eduTimelineTitle: "JOURNEY & MILESTONES",
-        timeThesis: "Smart Wishlist Prioritization Flow (Master Thesis)", timeSpring: "Neural Classification and Unsupervised Learning",
+        timeEventHorizon: "EventHorizon",
+        timeThesis: "Chrome Extension for Intent-Based Search Ranking and User Decision Support (Master Thesis Project)", timeSpring: "Neural Classification and Unsupervised Learning",
         timeSpringBoot: "SpringBoot Traineeship Management System", timeMNIST: "MLP Classifier for MNIST Digit Recognition",
         timeTreegram: "Treegram App Social Media Platform", timeRobo: "Jackal and RRbot Simulations"
     },
@@ -45,7 +46,8 @@ const translations = {
         sysArch: "ΠΡΟΣΦΑΤΑ ΕΝΔΙΑΦΕΡΟΝΤΑ", secTitle: "Κατάταξη αναζήτησης βάσει πρόθεσης", patTitle: "Αρχιτεκτονική συστήματος Full-Stack",
         connect: "ΣΥΝΔΕΣΗ", conNet: "LinkedIn", conSrc: "GitHub",
         eduTimelineTitle: "ΠΟΡΕΙΑ & ΟΡΟΣΗΜΑ",
-        timeThesis: "Ροή Προτεραιότητας Έξυπνης Wishlist (Πτυχιακή Εργασία)", timeSpring: "Νευρωνική Ταξινόμηση και Μη Επιβλεπόμενη Μάθηση",
+        timeEventHorizon: "EventHorizon",
+        timeThesis: "Επέκταση Chrome για Κατάταξη Αποτελεσμάτων Αναζήτησης βάσει Πρόθεσης και Υποστήριξη Λήψης Αποφάσεων Χρήστη (Διπλωματική Εργασία)", timeSpring: "Νευρωνική Ταξινόμηση και Μη Επιβλεπόμενη Μάθηση",
         timeSpringBoot: "Σύστημα Διαχείρισης Πρακτικής (SpringBoot)", timeMNIST: "MLP Classifier για MNIST Αναγνώριση Ψηφίων",
         timeTreegram: "Πλατφόρμα Social Media Treegram App", timeRobo: "Προσομοιώσεις Jackal και RRbot"
     },
@@ -64,7 +66,8 @@ const translations = {
         sysArch: "INTÉRÊTS RÉCENTS", secTitle: "Classement de recherche basé sur l'intention", patTitle: "Architecture système Full-Stack",
         connect: "CONTACT", conNet: "LinkedIn", conSrc: "GitHub",
         eduTimelineTitle: "PARCOURS ET ÉTAPES",
-        timeThesis: "Flux de priorité intelligent pour Wishlist (Mémoire de licence)", timeSpring: "Classification neurale et Apprentissage non supervisé",
+        timeEventHorizon: "EventHorizon",
+        timeThesis: "Extension Chrome pour le classement des résultats de recherche basé sur l’intention et l’aide à la décision de l’utilisateur (Mémoire de fin d’études)", timeSpring: "Classification neurale et Apprentissage non supervisé",
         timeSpringBoot: "Système de gestion de stage (SpringBoot)", timeMNIST: "Classificateur MLP pour MNIST",
         timeTreegram: "Plateforme Sociale Treegram App", timeRobo: "Simulations Jackal et RRbot"
     }
