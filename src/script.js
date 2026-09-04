@@ -135,7 +135,6 @@ function updateClock() {
 }
 setInterval(updateClock, 1000); updateClock();
 
-// Move a timeline item by partial text match into the dossier back timeline (preserves original timeline markup)
 function moveTimelineItemToBackByText(matchText){
     const backTimeline = document.querySelector('.dossier-static .back-timeline');
     const items = document.querySelectorAll('.timeline-container .timeline-item');
@@ -145,7 +144,9 @@ function moveTimelineItemToBackByText(matchText){
         if(contentEl && contentEl.textContent.includes(matchText)){
             // remove from original container and append to back timeline
             item.parentNode && item.parentNode.removeChild(item);
-            backTimeline.appendChild(item);
+            
+            // USE PREPEND INSTEAD OF APPENDCHILD
+            backTimeline.prepend(item);
             return true;
         }
     }
