@@ -260,28 +260,39 @@ header {
 }
 
 /* Dossier-specific: make back-face typography match front timeline */
+/* Expose the front face's computed typography as CSS variables (no visual change)
+   so the back face can reuse them exactly without modifying front selectors. */
+.dossier-static .flip-front {
+    /* Front face reference variables — keep in sync with .timeline-content/.timeline-date */
+    --dossier-title-font-size: 1.2rem;
+    --dossier-title-font-weight: 600;
+    --dossier-date-font-size: 0.75rem;
+    --dossier-date-font-weight: 700;
+    --dossier-content-font-size: 0.85rem;
+    --dossier-content-font-weight: 500;
+    --dossier-content-line-height: 1.3;
+}
+
+/* Apply front values to back via variables to guarantee exact match */
 .dossier-static .flip-back h3 {
-    /* Match the front title */
-    font-size: 1.2rem; /* same as .bento-box h3 */
+    font-size: var(--dossier-title-font-size);
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--accent);
     margin: 0 0 1rem 0;
-    font-weight: 600;
+    font-weight: var(--dossier-title-font-weight);
 }
 .dossier-static .flip-back .timeline-container .timeline-date {
-    /* exact match to front */
-    font-size: 0.75rem;
-    font-weight: 700; /* bold */
+    font-size: var(--dossier-date-font-size);
+    font-weight: var(--dossier-date-font-weight);
     color: var(--accent);
     margin-bottom: 0.2rem;
     line-height: 1.1;
 }
 .dossier-static .flip-back .timeline-container .timeline-content {
-    /* exact match to front */
-    font-size: 0.85rem;
-    font-weight: 500; /* medium */
-    line-height: 1.3;
+    font-size: var(--dossier-content-font-size);
+    font-weight: var(--dossier-content-font-weight);
+    line-height: var(--dossier-content-line-height);
     color: var(--text-color);
     font-family: inherit;
 }
@@ -289,8 +300,8 @@ header {
 .dossier-static .flip-back p { text-align: left; margin: 0; }
 
 /* Force specificity so no other flip-back rules override sizes */
-.dossier-static.flip-container .flip-back .timeline-content { font-size: 0.85rem !important; font-weight: 500 !important; }
-.dossier-static.flip-container .flip-back .timeline-date { font-size: 0.75rem !important; font-weight: 700 !important; }
+.dossier-static.flip-container .flip-back .timeline-content { font-size: var(--dossier-content-font-size) !important; font-weight: var(--dossier-content-font-weight) !important; line-height: var(--dossier-content-line-height) !important; }
+.dossier-static.flip-container .flip-back .timeline-date { font-size: var(--dossier-date-font-size) !important; font-weight: var(--dossier-date-font-weight) !important; }
 
 
 /* --- Link Overrides --- */
