@@ -149,15 +149,41 @@ function renderProjects(){
     const backList = document.querySelector('.dossier-static .back-list');
     if(!backList) return;
     backList.innerHTML = '';
-    projects.forEach(p => {
+    projects.forEach((p, idx) => {
         const item = document.createElement('div');
         item.className = 'proj-item';
+        item.dataset.index = idx;
         item.innerHTML = `<p class="proj-title">${p.title}</p><p class="proj-desc">${p.desc}</p>`;
         backList.appendChild(item);
     });
 }
 
-function addProject(title, desc){ projects.unshift({title, desc}); renderProjects(); }
+// addProject(title, desc, index?) - insert at index if provided, otherwise append to the end (back face)
+function addProject(title, desc, index){
+    const p = { title: title || 'Untitled', desc: desc || '' };
+    if (typeof index === 'number' && index >= 0 && index <= projects.length){
+        projects.splice(index, 0, p);
+    } else {
+        // default: add to the end so new projects appear on the back face
+        projects.push(p);
+    }
+    renderProjects();
+}
+
+// Move a timeline item (by matching text) to the back projects list. Returns true if moved.
+function moveTimelineItemToBack(contentText, desc){
+    const items = Array.from(document.querySelectorAll('.timeline-content'));
+    for (const el of items){
+        if (el.textContent.trim().includes(contentText.trim())){
+            const parent = el.closest('.timeline-item');
+            if (parent) parent.remove();
+            addProject(el.textContent.trim(), desc || '');
+            return true;
+        }
+    }
+    return false;
+}
+
 document.addEventListener('DOMContentLoaded', ()=>{ renderProjects(); });
 
 async function fetchGithubLanguages() {
