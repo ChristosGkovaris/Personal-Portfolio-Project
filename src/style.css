@@ -229,8 +229,11 @@ header {
 
 /* APPLY OUR EARLIER TRICK TO KEEP TITLES AT THE TOP */
 /* For dossier specifically, keep the title aligned at the very top inside the card */
-.dossier-static .flip-front { justify-content: flex-start; align-items: flex-start; }
-.dossier-static .flip-front h3 { margin-top: 8px; margin-bottom: 12px; text-align: center; width:100%; }
+.dossier-static .flip-front { justify-content: flex-start; align-items: stretch; padding-top: 1rem; }
+.dossier-static .flip-front h3 { position: relative; margin: 0; padding: 0.6rem 0; text-align: center; width:100%; z-index: 1; background: transparent; }
+
+/* Ensure the flip face inner content sits below the title and inside the rounded card */
+.dossier-static .flip-front .timeline-container { margin-top: 0.6rem; }
 
 /* Fall-back for other flip cards */
 .flip-front h3, .flip-back h3 {
