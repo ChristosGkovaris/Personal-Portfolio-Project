@@ -152,9 +152,24 @@ function moveTimelineItemToBackByText(matchText){
     return false;
 }
 
-// Ensure the Jackal timeline entry is moved to the back on load
+// Ensure only the Jackal timeline entry is on the back and no other project items are present
 document.addEventListener('DOMContentLoaded', ()=>{
-    // partial match for 'Jackal' to find 'Jackal and RRbot Simulations'
+    const backList = document.querySelector('.dossier-static .back-list');
+    if(backList){
+        // remove any leftover project-style items (proj-item) from previous iterations
+        Array.from(backList.querySelectorAll('.proj-item')).forEach(el => el.remove());
+        // ensure back-timeline container exists and is empty
+        let backTimeline = backList.querySelector('.back-timeline');
+        if(!backTimeline){
+            backTimeline = document.createElement('div');
+            backTimeline.className = 'timeline-container back-timeline';
+            backList.appendChild(backTimeline);
+        } else {
+            backTimeline.innerHTML = '';
+        }
+    }
+
+    // Move only the 'Jackal' timeline item (keeps same markup/styling)
     moveTimelineItemToBackByText('Jackal');
 });
 
