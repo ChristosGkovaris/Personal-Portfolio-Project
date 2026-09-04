@@ -300,8 +300,21 @@ header {
 .dossier-static .flip-back p { text-align: left; margin: 0; }
 
 /* Force specificity so no other flip-back rules override sizes */
-.dossier-static.flip-container .flip-back .timeline-content { font-size: var(--dossier-content-font-size) !important; font-weight: var(--dossier-content-font-weight) !important; line-height: var(--dossier-content-line-height) !important; }
+.dossier-static.flip-container .flip-back .timeline-content { font-size: var(--dossier-content-font-size) !important; font-weight: var(--dossier-content-font-weight) !important; line-height: var(--dossier-content-line-height) !important; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 .dossier-static.flip-container .flip-back .timeline-date { font-size: var(--dossier-date-font-size) !important; font-weight: var(--dossier-date-font-weight) !important; }
+
+/* Additional shrink override: make back slightly smaller to match front visual weight */
+.dossier-static.flip-container .flip-back .timeline-content {
+    /* small visual nudge downwards if the back still appears heavier in some rendering engines */
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+}
+.dossier-static.flip-container .flip-back .timeline-date {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+}
+
 
 
 /* --- Link Overrides --- */
