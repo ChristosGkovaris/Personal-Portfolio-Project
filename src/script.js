@@ -135,56 +135,29 @@ function updateClock() {
 }
 setInterval(updateClock, 1000); updateClock();
 
-// Projects shown on dossier back face (left)
-const projects = [
-    { title: 'MLP Classifier for MNIST', desc: 'Digit Recognition' },
-    { title: 'Treegram App Social Media Platform', desc: 'Social platform' },
-    { title: 'SpringBoot Traineeship Management System', desc: 'Traineeship system' },
-    { title: 'Neural Classification and Unsupervised Learning', desc: 'Research' },
-    { title: 'Chrome Extension for Intent-Based Search', desc: 'Master Thesis Project' },
-    { title: 'EventHorizon', desc: 'Realtime event visualiser' }
-];
-
-function renderProjects(){
-    const backList = document.querySelector('.dossier-static .back-list');
-    if(!backList) return;
-    backList.innerHTML = '';
-    projects.forEach((p, idx) => {
-        const item = document.createElement('div');
-        item.className = 'proj-item';
-        item.dataset.index = idx;
-        item.innerHTML = `<p class="proj-title">${p.title}</p><p class="proj-desc">${p.desc}</p>`;
-        backList.appendChild(item);
-    });
-}
-
-// addProject(title, desc, index?) - insert at index if provided, otherwise append to the end (back face)
-function addProject(title, desc, index){
-    const p = { title: title || 'Untitled', desc: desc || '' };
-    if (typeof index === 'number' && index >= 0 && index <= projects.length){
-        projects.splice(index, 0, p);
-    } else {
-        // default: add to the end so new projects appear on the back face
-        projects.push(p);
-    }
-    renderProjects();
-}
-
-// Move a timeline item (by matching text) to the back projects list. Returns true if moved.
-function moveTimelineItemToBack(contentText, desc){
-    const items = Array.from(document.querySelectorAll('.timeline-content'));
-    for (const el of items){
-        if (el.textContent.trim().includes(contentText.trim())){
-            const parent = el.closest('.timeline-item');
-            if (parent) parent.remove();
-            addProject(el.textContent.trim(), desc || '');
+// Move a timeline item by partial text match into the dossier back timeline (preserves original timeline markup)
+function moveTimelineItemToBackByText(matchText){
+    const backTimeline = document.querySelector('.dossier-static .back-timeline');
+    const items = document.querySelectorAll('.timeline-container .timeline-item');
+    if(!backTimeline) return false;
+    for(const item of items){
+        const contentEl = item.querySelector('.timeline-content');
+        if(contentEl && contentEl.textContent.includes(matchText)){
+            // remove from original container and append to back timeline
+            item.parentNode && item.parentNode.removeChild(item);
+            backTimeline.appendChild(item);
             return true;
         }
     }
     return false;
 }
 
-document.addEventListener('DOMContentLoaded', ()=>{ renderProjects(); });
+// Ensure the Jackal timeline entry is moved to the back on load
+document.addEventListener('DOMContentLoaded', ()=>{
+    // partial match for 'Jackal' to find 'Jackal and RRbot Simulations'
+    moveTimelineItemToBackByText('Jackal');
+});
+
 
 async function fetchGithubLanguages() {
     const container = document.getElementById('languages-container');
