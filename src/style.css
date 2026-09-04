@@ -260,9 +260,9 @@ header {
 }
 
 /* Dossier-specific: make back-face typography match front timeline */
-/* Expose the front face's computed typography as CSS variables (no visual change)
+/* Expose the front face's computed typography as CSS variables at the dossier root
    so the back face can reuse them exactly without modifying front selectors. */
-.dossier-static .flip-front {
+.dossier-static {
     /* Front face reference variables — keep in sync with .timeline-content/.timeline-date */
     --dossier-title-font-size: 1.2rem;
     --dossier-title-font-weight: 600;
