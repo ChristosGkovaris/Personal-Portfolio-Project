@@ -135,9 +135,7 @@ function updateClock() {
 }
 setInterval(updateClock, 1000); updateClock();
 
-// -----------------------
-// PROJECTS: dynamic front/back overflow
-// -----------------------
+// Projects shown on dossier back face (left)
 const projects = [
     { title: 'MLP Classifier for MNIST', desc: 'Digit Recognition' },
     { title: 'Treegram App Social Media Platform', desc: 'Social platform' },
@@ -148,37 +146,19 @@ const projects = [
 ];
 
 function renderProjects(){
-    const frontList = document.querySelector('.projects .front-list');
-    const backList = document.querySelector('.projects .back-list');
-    const moreLabel = document.querySelector('.projects-more');
-    if(!frontList || !backList) return;
-    frontList.innerHTML = ''; backList.innerHTML = '';
+    const backList = document.querySelector('.dossier-static .back-list');
+    if(!backList) return;
+    backList.innerHTML = '';
     projects.forEach(p => {
         const item = document.createElement('div');
         item.className = 'proj-item';
         item.innerHTML = `<p class="proj-title">${p.title}</p><p class="proj-desc">${p.desc}</p>`;
-        frontList.appendChild(item);
+        backList.appendChild(item);
     });
-
-    // move overflow items to back face by measuring cumulative height
-    const frontBox = document.querySelector('.bento-box.projects .flip-front');
-    const available = frontBox.clientHeight - 60; // reserve for header/padding
-    let cum = 0;
-    const items = Array.from(frontList.children);
-    for(let i = 0; i < items.length; i++){
-        const h = items[i].getBoundingClientRect().height;
-        if(cum + h > available){
-            backList.appendChild(items[i]);
-        } else {
-            cum += h;
-        }
-    }
-    moreLabel.textContent = backList.children.length ? `+${backList.children.length} more — hover to flip` : '';
 }
 
 function addProject(title, desc){ projects.unshift({title, desc}); renderProjects(); }
 document.addEventListener('DOMContentLoaded', ()=>{ renderProjects(); });
-window.addEventListener('resize', ()=>{ renderProjects(); });
 
 async function fetchGithubLanguages() {
     const container = document.getElementById('languages-container');
