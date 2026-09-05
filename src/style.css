@@ -307,6 +307,11 @@ header {
 .dossier-static.flip-container .flip-back .timeline-content { font-size: var(--dossier-content-font-size) !important; font-weight: var(--dossier-content-font-weight) !important; line-height: var(--dossier-content-line-height) !important; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 .dossier-static.flip-container .flip-back .timeline-date { font-size: var(--dossier-date-font-size) !important; font-weight: var(--dossier-date-font-weight) !important; }
 
+/* Push back-face content to the top for the dossier */
+.dossier-static.flip-container .flip-back {
+    justify-content: flex-start !important;
+    padding-top: 4.5rem; /* Matches the space taken by the title on the front */
+}
 
 /* --- Link Overrides --- */
 .linkedin-link {
